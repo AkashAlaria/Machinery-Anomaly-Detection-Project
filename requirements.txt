@@ -2,3 +2,5 @@ streamlit
 torch
 numpy
 joblib
+pydantic
+fastapi
