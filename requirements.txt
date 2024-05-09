@@ -14,3 +14,4 @@ flask-wtf
 flask-sqlalchemy
 streamlit
 joblib
+streamlit-option-menu
