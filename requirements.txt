@@ -3,7 +3,8 @@ numpy
 pandas 
 matplotlib 
 seaborn 
-torch 
+torch
+requests
 pytorch-lightning 
 scikit-learn 
 imbalanced-learn 
@@ -15,3 +16,4 @@ flask-sqlalchemy
 streamlit
 joblib
 streamlit-option-menu
+streamlit-lottie
