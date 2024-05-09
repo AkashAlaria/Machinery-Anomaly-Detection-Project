@@ -1,10 +1,14 @@
-import streamlit as st
-import joblib
 import os
+import time
+import joblib
 import numpy as np
+import requests
+import streamlit as st
 import torch
-from model import load_model, ModelPrediction
+from streamlit_lottie import st_lottie
 from streamlit_option_menu import option_menu
+
+from model import load_model, ModelPrediction
 
 model_path = os.path.join(".", "wights_raw.pickle")
 scaler_path = os.path.join(".", "scaler.pkl")
@@ -42,7 +46,6 @@ def make_prediction(data):
 
 
 def main():
-    st.empty()
     with st.sidebar:
         selected = option_menu("Menu", ["Prediction", 'Data Visualization', 'About', 'Group'],
                                icons=['cloud-upload', 'gear', 'list-task'], menu_icon="cast")
@@ -52,11 +55,26 @@ def main():
         input_data = st.text_input("Enter sensor data (16 comma-separated values):")
         st.write('{ For e.g: -1.0, 30.0, 25.0, -1.5, 10.0, 120.0, 60.0, 20.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }')
         if st.button("Predict"):
+            url = requests.get(
+                "https://lottie.host/4692311a-d982-44ad-93b2-64fa906a095e/QBbP37e7WT.json")
+            # Creating a blank dictionary to store JSON file,
+            # as their structure is similar to Python Dictionary
+            url_json = dict()
+            if url.status_code == 200:
+                url_json = url.json()
+            else:
+                print("Error in the URL")
+            st_lottie(url_json, loop=False, speed=10, height=500, width=500)
             if input_data:
                 input_data = input_data.split(',')
                 try:
                     input_data = [float(x) for x in input_data]
                     prediction = make_prediction(input_data)
+                    st.toast('Accessing the model...')
+                    time.sleep(2)
+                    st.toast('Calculating...')
+                    time.sleep(2)
+                    st.toast('Predicting.. and Done!')
                     if isinstance(prediction, str):
                         st.error(prediction)
                     else:
