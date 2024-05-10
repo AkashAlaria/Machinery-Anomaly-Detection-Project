@@ -79,7 +79,7 @@ def main():
                         else:
                             st.empty()  # Clear previous output before prediction results
                             if prediction.predicted_class == "Failure":
-                                st.error(f"Predicted Condition: {prediction.predicted_class}‼️🚨")
+                                st.error(f"Predicted Condition: {prediction.predicted_class}‼️🚨 Maintenance Needed 🔧")
                             else:
                                 st.success(f"Predicted Condition: {prediction.predicted_class} 👍")
                     except ValueError:
