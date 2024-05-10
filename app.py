@@ -55,7 +55,7 @@ def main():
         st.title("⚙️ Machinery Anomaly Detection for Preventive Maintenance ‍🔧")
         input_data = st.text_input("Enter sensor data (16 comma-separated values):")
         st.write('{ For e.g: -1.0, 30.0, 25.0, -1.5, 10.0, 120.0, 60.0, 20.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }')
-                if st.button("Predict"):
+        if st.button("Predict"):
             st.empty()  # Clear previous output before processing
             if input_data:
                 num_values = len(input_data.split(","))
