@@ -160,7 +160,7 @@ def main():
         st.header("About the Dataset")
         st.write("This project uses the MetroPT dataset, which contains sensor data collected from metro trains in "
                  "Porto, Portugal. The dataset includes various measurements related to the trains' operations and "
-                 "maintenance. The dataset consists of 15169480 data points collected at 1Hz from February to "
+                 "maintenance. The dataset consists of 1516948 data points collected at 1Hz from February to "
                  "August 2020 and is described by 15 features from 7 analogue (1-7) and 8 digital (8-15) sensors: ")
         st.write("1. TP2 "
                  "(bar): the measure of the pressure on the compressor.")
