@@ -55,31 +55,37 @@ def main():
         st.title("⚙️ Machinery Anomaly Detection for Preventive Maintenance ‍🔧")
         input_data = st.text_input("Enter sensor data (16 comma-separated values):")
         st.write('{ For e.g: -1.0, 30.0, 25.0, -1.5, 10.0, 120.0, 60.0, 20.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }')
-        if st.button("Predict"):
-            st.empty()
+                if st.button("Predict"):
+            st.empty()  # Clear previous output before processing
             if input_data:
-                input_data = input_data.split(',')
-                try:
-                    input_data = [float(x) for x in input_data]
-                    prediction = make_prediction(input_data)
-                    animation_url = "https://lottie.host/5a06a577-2ed5-4889-9441-7634336c269b/VEeY406knp.json"
-                    col1, col2, col3 = st.columns(3)
-                    with col2:
-                        st_lottie(animation_url, loop=1, height=300, width=300)
-                    st.toast('Accessing the model...')
-                    time.sleep(2)
-                    st.toast('Calculating...')
-                    time.sleep(2)
-                    st.toast('Predicting.. and Done!')
-                    if isinstance(prediction, str):
-                        st.error(prediction)
-                    else:
-                        if prediction.predicted_class == "Failure":
-                            st.error(f"Predicted Condition: {prediction.predicted_class}‼️🚨")
+                num_values = len(input_data.split(","))
+                if num_values != 16:
+                    st.error("Please enter exactly 16 comma-separated numerical values.")
+                else:
+                    try:
+                        input_data = [float(x) for x in input_data.split(",")]
+                        prediction = make_prediction(input_data)
+                        animation_url = "https://lottie.host/5a06a577-2ed5-4889-9441-7634336c269b/VEeY406knp.json"
+                        col1, col2, col3 = st.columns(3)
+                        with col2:
+                            st_lottie(animation_url, loop=1, height=300, width=300)
+                        st.toast('Accessing the model...')
+                        time.sleep(2)
+                        st.toast('Calculating...')
+                        time.sleep(2)
+                        st.toast('Predicting.. and Done!')
+                        if isinstance(prediction, str):
+                            st.error(prediction)
                         else:
-                            st.success(f"Predicted Condition: {prediction.predicted_class}👍")
-                except ValueError:
-                    st.error("Please enter 16 comma-separated numerical values.")
+                            st.empty()  # Clear previous output before prediction results
+                            if prediction.predicted_class == "Failure":
+                                st.error(f"Predicted Condition: {prediction.predicted_class}‼️🚨")
+                            else:
+                                st.success(f"Predicted Condition: {prediction.predicted_class} 👍")
+                    except ValueError:
+                        st.error("Please enter valid numerical values separated by commas.")
+            else:
+                st.error("Please enter 16 comma-separated values.")
     elif selected == "Data Visualization":
         st.empty()  # Clear the page content
         st.title("📊 Data Visualization 📈")
