@@ -56,6 +56,11 @@ def main():
         input_data = st.text_input("Enter sensor data (16 comma-separated values):")
         st.write('{ For e.g: -1.0, 30.0, 25.0, -1.5, 10.0, 120.0, 60.0, 20.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0 }')
         if st.button("Predict"):
+            animation_url = "https://lottie.host/5a06a577-2ed5-4889-9441-7634336c269b/VEeY406knp.json"  # Replace
+            # with your URL
+            col1, col2, col3 = st.columns(3)
+            with col2:
+                st_lottie(animation_url, loop=1, height=300, width=300)
             if input_data:
                 input_data = input_data.split(',')
                 try:
