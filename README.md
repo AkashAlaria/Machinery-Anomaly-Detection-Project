@@ -31,7 +31,7 @@ The code performs hyperparameter tuning for some models, such as Random Forest a
 ## Usage
 The project includes a Streamlit application for easy deployment and interaction. The application allows users to input sensor data and obtain predictions from the trained model. It also provides data visualization and information about the project and dataset.
 
-To run the application, execute the `main.py` script.
+To run the application, go to https://madpm-deploy.streamlit.app/.
 
 ## Contributors
 - Aranyak Karan
